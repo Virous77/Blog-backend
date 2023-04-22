@@ -1,5 +1,6 @@
 import express from "express";
-import router from "./src/routes/index.js";
+import blogRouter from "./src/routes/index.js";
+import imageRouter from "./src/images/createImage.js";
 import mongoose from "mongoose";
 import methodOverride from "method-override";
 import Article from "./src/model/article.js";
@@ -13,7 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
-app.use("/articles", router);
+app.use("/articles", blogRouter);
+app.use("/image", imageRouter);
 
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
