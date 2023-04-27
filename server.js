@@ -1,6 +1,5 @@
 import express from "express";
 import blogRouter from "./src/routes/index.js";
-import imageRouter from "./src/images/createImage.js";
 import mongoose from "mongoose";
 import cors from "cors";
 import methodOverride from "method-override";
@@ -20,7 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 app.use("/articles", blogRouter);
-app.use("/image", imageRouter);
 
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
