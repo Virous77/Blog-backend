@@ -2,15 +2,20 @@ import express from "express";
 import blogRouter from "./src/routes/index.js";
 import imageRouter from "./src/images/createImage.js";
 import mongoose from "mongoose";
+import cors from "cors";
 import methodOverride from "method-override";
 import Article from "./src/model/article.js";
+import bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 import { formattedDate } from "./utils/data.js";
 dotenv.config();
 
 const app = express();
 
-app.use(express.json());
+app.use(cors());
+app.use(express.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: false, limit: "50mb" }));
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
